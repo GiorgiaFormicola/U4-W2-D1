@@ -25,7 +25,6 @@ public class Main {
 
                 /*int kmPerLiter = km / liters;*/
                 double kmPerLiter = km / liters;
-                
                 System.out.println("The kilometers per liter travelled are " + kmPerLiter);
                 break;
             } catch (NumberFormatException e) {
