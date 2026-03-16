@@ -3,10 +3,15 @@ package exercise3;
 import exercise3.entities.ContoCorrente;
 import exercise3.entities.ContoOnLine;
 import exercise3.exceptions.BancaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Scanner;
 
 public class Main {
+
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -21,12 +26,12 @@ public class Main {
                 if (importoDaPrelevare <= 0) throw new NumberFormatException("For input number: < 0");
                 contoOnLine.preleva(importoDaPrelevare);
             } catch (BancaException e) {
-                System.out.println("ERRORE: " + e.getMessage());
+                logger.error("ERRORE: " + e.getMessage());
             } catch (NumberFormatException e) {
-                System.out.println("ERRORE: inserire un numero (maggiore di 0) " + e.getMessage());
+                logger.error("ERRORE: inserire un numero (maggiore di 0) " + e.getMessage());
             }
         }
 
-        System.out.println("TOTALE SALDO: " + contoOnLine.restituisciSaldo());
+        logger.info("TOTALE SALDO: {}", contoOnLine.restituisciSaldo());
     }
 }

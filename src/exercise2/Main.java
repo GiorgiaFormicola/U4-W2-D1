@@ -1,8 +1,13 @@
 package exercise2;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Scanner;
 
 public class Main {
+    private static final Logger logger = LoggerFactory.getLogger(Main.class);
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
@@ -15,7 +20,7 @@ public class Main {
                 double km = Double.parseDouble(scanner.nextLine());
 
                 if (km <= 0) {
-                    System.out.println("The value must be bigger than zero, try again!");
+                    logger.error("The value must be bigger than zero, try again!");
                     continue;
                 }
 
@@ -27,19 +32,19 @@ public class Main {
                 double liters = Double.parseDouble(scanner.nextLine());
 
                 if (liters < 0) {
-                    System.out.println("The value must be a positive number, try again!");
+                    logger.error("The value must be a positive number, try again!");
                     continue;
                 }
 
                 /*int kmPerLiter = km / liters;*/
                 double kmPerLiter = km / liters;
                 if (Double.isInfinite(kmPerLiter)) throw new ArithmeticException("/ by zero");
-                System.out.println("The kilometers per liter travelled are " + kmPerLiter);
+                logger.info("The kilometers per liter travelled are {}", kmPerLiter);
                 break;
             } catch (NumberFormatException e) {
-                System.out.println("You must type a number, try again! + ERROR: " + e.getMessage() + ")");
+                logger.error("You must type a number, try again! + ERROR: {})", e.getMessage());
             } catch (ArithmeticException e) {
-                System.out.println("You must type a number different from 0, try again! + ERROR: " + e.getMessage() + ")");
+                logger.error("You must type a number different from 0, try again! + ERROR: {})", e.getMessage());
             }
         }
 
