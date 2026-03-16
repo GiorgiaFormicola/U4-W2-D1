@@ -3,7 +3,7 @@ package exercise3.entities;
 import exercise3.exceptions.BancaException;
 
 public class ContoCorrente {
-    protected final int maxMovimenti = 50;
+    protected final int maxMovimenti = 4;
     protected String titolare;
     protected int nMovimenti;
     protected double saldo;

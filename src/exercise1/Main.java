@@ -11,9 +11,9 @@ public class Main {
 
         int[] arrayOfNumbers = new int[5];
 
-        /*for (int number : arrayOfNumbers) {
+        for (int number : arrayOfNumbers) {
             number = random.nextInt(1, 10);
-        }*/
+        }
 
         for (int i = 0; i < arrayOfNumbers.length; i++) {
             arrayOfNumbers[i] = random.nextInt(1, 10);
@@ -35,11 +35,9 @@ public class Main {
                 arrayOfNumbers[index] = numberToInsert;
                 System.out.println(Arrays.toString(arrayOfNumbers));
             } catch (NumberFormatException e) {
-                System.out.println("You must type a number, try again! (ERROR: " + e.getMessage() + ")");
-                continue;
+                System.out.println("You must type an integer number, try again! (ERROR: " + e.getMessage() + ")");
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println("You must type a number from 0 to 4, try again! (ERROR: " + e.getMessage() + ")");
-                continue;
             }
         }
     }

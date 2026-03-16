@@ -4,40 +4,29 @@ import exercise3.entities.ContoCorrente;
 import exercise3.entities.ContoOnLine;
 import exercise3.exceptions.BancaException;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
         ContoCorrente conto = new ContoCorrente("Giorgia", 150);
-        ContoOnLine contoOnLine = new ContoOnLine("Giorgia", 150, 60);
+        ContoOnLine contoOnLine = new ContoOnLine("Giorgia", 150, 100);
 
-        try {
-            conto.preleva(10);
-        } catch (BancaException e) {
-            System.out.println("TEST 1: " + e.getMessage());
+
+        while (contoOnLine.restituisciSaldo() > 0) {
+            System.out.println("Inserire l'importo da prelevare");
+            try {
+                double importoDaPrelevare = Double.parseDouble(scanner.nextLine());
+                if (importoDaPrelevare <= 0) throw new NumberFormatException("For input number: < 0");
+                contoOnLine.preleva(importoDaPrelevare);
+            } catch (BancaException e) {
+                System.out.println("ERRORE: " + e.getMessage());
+            } catch (NumberFormatException e) {
+                System.out.println("ERRORE: inserire un numero (maggiore di 0) " + e.getMessage());
+            }
         }
 
-        try {
-            conto.preleva(200);
-        } catch (BancaException e) {
-            System.out.println("TEST 2: " + e.getMessage());
-        }
-
-
-        try {
-            contoOnLine.preleva(20);
-        } catch (BancaException e) {
-            System.out.println("TEST 3: " + e.getMessage());
-        }
-
-        try {
-            contoOnLine.preleva(70);
-        } catch (BancaException e) {
-            System.out.println("TEST 4: " + e.getMessage());
-        }
-
-        try {
-            contoOnLine.preleva(200);
-        } catch (BancaException e) {
-            System.out.println("TEST 5: " + e.getMessage());
-        }
+        System.out.println("TOTALE SALDO: " + contoOnLine.restituisciSaldo());
     }
 }
